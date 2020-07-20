@@ -1,0 +1,314 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title> 
+		DAY 4 ASSIGNMENTS-LUFCS
+	</title> 
+
+</head> 
+
+<body> 
+
+	<h1>LETSUPGRADE ASSIGNMENT</h1> 
+	<h3>DAY 4 ASSIGNMENT ANSWER-1 </h3>
+	<script>
+		function fizzBuzz(){
+			for(var i=1;i<=100;i++){
+				if(i%5 === 0 && i%3 === 0){
+					print('FizzBuzz');
+				} else if(i%3 === 0){
+					print('Fizz');
+				} else if(i%5 === 0){
+					print('Buzz');
+				} else {
+					print(i);
+				}
+			}
+		}
+		
+	</script>
+
+		<h3>DAY 4 ASSIGNMENT ANSWER-2 </h3>
+		<script>
+		const student = {
+			name: "Helsinki",
+			age: 24,
+			projects: { 
+				diceGame: "Two player dice game using JavaScript"
+		  }
+		}
+		const {name, age, projects} = student;
+		  
+		  alert(name);  // Helsinki
+		  alert(age);  // 24
+		  alert(projects); // Two olayer dice game using javascript
+		</script>
+
+		<h3>DAY 4 ASSIGNMENT ANSWER-3 </h3>
+		
+		//Imagine you are going out to do some grocery shopping.
+		So you have an array called shoppingList with all the products you want to buy.
+		
+		Now that you are inside of the shop, you have a basket with all the products from your list, but you want to add a few more.
+		
+		Create a new array called shoppingBasket, that will be a copy of the shoppingList array, and add some new products into it./*
+		<html>
+			<head>
+				<script src="index.pack.js"></script>
+			</head>
+			<body>
+			</body>
+		</html>
+	<script>
+	const shoppingList = ["eggs", "milk", "butter"]; 
+
+	</script>
+
+		<h3>DAY 4 ASSIGNMENT ANSWER-4 </h3>
+		<div class="calculator">
+
+			<input type="text" class="calculator-screen" value="" disabled />
+			
+			<div class="calculator-keys">
+			  
+			  <button type="button" class="operator" value="+">+</button>
+			  <button type="button" class="operator" value="-">-</button>
+			  <button type="button" class="operator" value="*">&times;</button>
+			  <button type="button" class="operator" value="/">&divide;</button>
+		  
+			  <button type="button" value="7">7</button>
+			  <button type="button" value="8">8</button>
+			  <button type="button" value="9">9</button>
+		  
+		  
+			  <button type="button" value="4">4</button>
+			  <button type="button" value="5">5</button>
+			  <button type="button" value="6">6</button>
+		  
+		  
+			  <button type="button" value="1">1</button>
+			  <button type="button" value="2">2</button>
+			  <button type="button" value="3">3</button>
+		  
+		  
+			  <button type="button" value="0">0</button>
+			  <button type="button" class="decimal" value=".">.</button>
+			  <button type="button" class="all-clear" value="all-clear">AC</button>
+		  
+			  <button type="button" class="equal-sign operator" value="=">=</button>
+		  
+			</div>
+		  </div>
+		  <script>
+			  const calculator = {
+  displayValue: '0',
+  firstOperand: null,
+  waitingForSecondOperand: false,
+  operator: null,
+};
+
+function inputDigit(digit) {
+  const {
+    displayValue,
+    waitingForSecondOperand
+  } = calculator;
+
+  if (waitingForSecondOperand === true) {
+    calculator.displayValue = digit;
+    calculator.waitingForSecondOperand = false;
+  } else {
+    calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
+  }
+}
+
+function inputDecimal(dot) {
+  if (calculator.waitingForSecondOperand === true) {
+    calculator.displayValue = "0."
+    calculator.waitingForSecondOperand = false;
+    return
+  }
+
+  if (!calculator.displayValue.includes(dot)) {
+    calculator.displayValue += dot;
+  }
+}
+
+function handleOperator(nextOperator) {
+  const {
+    firstOperand,
+    displayValue,
+    operator
+  } = calculator
+  const inputValue = parseFloat(displayValue);
+
+  if (operator && calculator.waitingForSecondOperand) {
+    calculator.operator = nextOperator;
+    return;
+  }
+
+
+  if (firstOperand == null && !isNaN(inputValue)) {
+    calculator.firstOperand = inputValue;
+  } else if (operator) {
+    const result = calculate(firstOperand, inputValue, operator);
+
+    calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
+    calculator.firstOperand = result;
+  }
+
+  calculator.waitingForSecondOperand = true;
+  calculator.operator = nextOperator;
+}
+
+function calculate(firstOperand, secondOperand, operator) {
+  if (operator === '+') {
+    return firstOperand + secondOperand;
+  } else if (operator === '-') {
+    return firstOperand - secondOperand;
+  } else if (operator === '*') {
+    return firstOperand * secondOperand;
+  } else if (operator === '/') {
+    return firstOperand / secondOperand;
+  }
+
+  return secondOperand;
+}
+
+function resetCalculator() {
+  calculator.displayValue = '0';
+  calculator.firstOperand = null;
+  calculator.waitingForSecondOperand = false;
+  calculator.operator = null;
+}
+
+function updateDisplay() {
+  const display = document.querySelector('.calculator-screen');
+  display.value = calculator.displayValue;
+}
+
+updateDisplay();
+
+const keys = document.querySelector('.calculator-keys');
+keys.addEventListener('click', event => {
+  const {
+    target
+  } = event;
+  const {
+    value
+  } = target;
+  if (!target.matches('button')) {
+    return;
+  }
+
+  switch (value) {
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+    case '=':
+      handleOperator(value);
+      break;
+    case '.':
+      inputDecimal(value);
+      break;
+    case 'all-clear':
+      resetCalculator();
+      break;
+    default:
+      if (Number.isInteger(parseFloat(value))) {
+        inputDigit(value);
+      }
+  }
+
+  updateDisplay();
+});
+
+		  </script>
+
+		<h3>DAY 4 ASSIGNMENT ANSWER-5 </h3>
+		<script>
+		function mycommission(){
+			var amt=Number(document.getElementById("amount").value);
+			var sum=0;
+			
+			switch (true) {
+			case (amt>20000):{
+			let val=Math.round((10/100)*amt);
+			console.log(sum);
+			sum=sum+val;
+			
+			}
+			case (amt>10001 || amt<20000):{
+			let v=Math.round((7/100)*20000);
+			console.log(sum);
+			sum=sum+v;
+			
+			}
+			case (amt>5001 || amt<10000 ):{
+			let a=Math.round((5/100)*10000);
+			console.log(sum);
+			sum=sum+a;
+			
+			}
+			case (amt>0||amt<5000):{
+			let l=Math.round((2/100)*5000);
+			console.log(sum);
+			sum=sum+l;
+			console.log(l,sum);
+			
+			}
+			default:
+			document.getElementById('printamt').innerHTML="Your Commission is "+sum+".";
+			break;
+			}
+			}
+		</script>
+
+		<h3>DAY 4 ASSIGNMENT ANSWER-6 </h3>
+		<script> 
+		let num;
+
+		while(1)
+		{
+		num = Number(prompt("Enter a number greater than 100 :"));
+		if(num < 100)
+		num = prompt("Enter a number greater than 100: ");
+		else
+		{
+		console.log(`Number entered is ${num}`);
+		break;
+		}
+		}
+	</script>
+
+	<h3>DAY 4 ASSIGNMENT ANSWER-7 </h3>
+	<script>
+				let n = 10;
+
+nextPrime:
+for (let i = 2; i <= n; i++) { // for each i...
+
+  for (let j = 2; j < i; j++) { // look for a divisor..
+    if (i % j == 0) continue nextPrime; // not a prime, go next i
+  }
+
+  alert( i ); // a prime
+}
+	</script>
+		<h3>DAY 4 ASSIGNMENT ANSWER-8 </h3>
+	<script>
+
+	function ask(question,yes,no){ 
+		if (confirm(question)) yes(); 
+		else no(); } 
+		ask{
+		"do you agree?",
+		function(){alert("you agreed.");},
+		function(){alert("you cancelled the execution.");}
+		}
+	</script>
+</body> 
+
+
+<html> 
