@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title> 
+        JavaScript Essentials DAY 6 ASSIGNMENT
+	</title> 
+</head> 
+
+<body> 
+    <h3>DAY 6 ASSIGNMENT ANSWER-1 </h3>
+    <!--JavaScript Program to change the background color-->
+	<script> 
+    function change(i) {  
+   var doc = document.getElementById("background");  
+   var color =[ "black", "blue", "brown", "green"];  
+   for(i=0; i<color.length; i++){  
+        doc.style.backgroundColor = color[i];  
+        alert("my color is "+ color[i]);  
+/*if (i>=color.length){i=0;}*/  
+    }
+ }  
+setInterval(function changebackground(){change(0)},1000);
+    </script> 
+    
+    <h3>DAY 6 ASSIGNMENT ANSWER-2 </h3>
+
+    <!--JavaScript - Function to Display Table of an entered Number.-->
+<html>
+	<head>
+		<title>JavaScript - Function to Display Table of an entered Number.</title>
+		<script type="text/javascript">
+			function printTable(){
+				var num;
+				num=Number(document.getElementById('txtNumber').value);
+				for(var i=1; i<=10; i++){
+					var pTag= document.getElementById('pPrint');
+					pTag.innerHTML += (num*i) + "<br/>" 
+				}
+			}
+		</script>
+	</head>
+
+	<body style="text-align: center;">
+		<h1>JavaScript - Function to Display Table of an entered Number.</h1>
+		<p><input type="text" id="txtNumber" placeholder="Enter Number"/></p>
+		<p><input type="button" value="Print Table." onclick='printTable()'/>
+		<!--print numbers-->
+		<p id="pPrint"></p>
+	</body>
+
+</html>
+        <h3>DAY 6 ASSIGNMENT ANSWER-3 </h3>
+        <!--Display Welcome Message on Button Click Event.-->
+<html>
+	<head>
+		<title>Display Alert Message on Button Click Event.</title>
+		<script type="text/javascript">
+			function showMessage(){
+				alert("Hello LUFCS JAVASCRIPT ESSENTIALS TUTOR!!.");
+			}
+		</script>
+	</head>
+<body>
+	<center>
+		<h1>LUFCS JAVASCRIPT ESSENTIALS</h1>
+        <b>Click on button to display Welcome Message: </b><br><br>
+		<p><input type="text" id="txtNumber" placeholder="Enter Your Name="/></p>
+        
+		<input type="button" id="btnShowMsg" value="Click Me!" onClick='showMessage()'/>
+	</center>
+</body>
+
+</html>
+
+</body> 
+
+</html> 
+
+
+
